@@ -1,6 +1,6 @@
 # FedCova: Robust Federated Covariance Learning Against Noisy Labels
 
-This repository contains the official code for the paper "FedCova: Robust Federated Covariance Learning Against Noisy Labels". This release provides a CIFAR-10 experiment with heterogeneous data and symmetric label noise.
+This repository contains the official code for the paper "FedCova: Robust Federated Covariance Learning Against Noisy Labels".
 
 ## Authors
 
@@ -20,12 +20,12 @@ This repository is organized as follows:
 
 - `MonteCarlo.py`: Main entry point for data loading, federated training, evaluation, and result output.
 - `browser/options_base.py`: Experiment settings, including data partitioning, noise levels, training seeds, and correction settings.
-- `datasets/dataset_base.py`: CIFAR-10 loading, preprocessing, and heterogeneous client data partitioning.
+- `datasets/dataset_base.py`: Dataset loading, preprocessing, and heterogeneous client data partitioning.
 - `datasets/cifar.py` and `datasets/utils.py`: Dataset implementation and label-noise utilities.
 - `modules/modules_environments.py` and `modules/modules_subsystems.py`: Federated training workflow, model and covariance aggregation, and label correction.
 - `modules/modules_networks.py`: Network structures and local training.
 - `modules/loss.py`: Covariance-based feature learning objective.
-- `modules/classifier.py`: Covariance-based classifier, with `e = 2` and `alpha = 2` for the provided experiment.
+- `modules/classifier.py`: Covariance-based classifier.
 - `browser/visual_base.py`: CSV result export utilities.
 - `requirements.txt`: Required Python packages.
 
@@ -43,23 +43,15 @@ python -m pip install -r requirements.txt
 
 The dependency versions follow the original environment export: PyTorch 1.10.1 and torchvision 0.11.2, originally used with CUDA 10.2. Use mutually compatible PyTorch/torchvision CUDA builds for your system. The minimal dependency installation has not yet been validated by a complete training run.
 
-**Prepare CIFAR-10**
+**Prepare Data and Configure the Experiment**
 
-Place the extracted CIFAR-10 files under:
-
-```text
-datasets/cifar10/cifar-10-batches-py/
-```
-
-The loader also attempts to download CIFAR-10 if the files are missing. Dataset paths can be adjusted in `datasets/dataset_base.py`.
+Prepare the dataset files and adjust their paths in `datasets/dataset_base.py`. Experiment settings can be adjusted in `browser/options_base.py`; the covariance loss and classifier parameters are defined in `modules/loss.py` and `modules/classifier.py`.
 
 **Run the Experiment**
 
 ```bash
 python MonteCarlo.py
 ```
-
-The default configuration uses ResNet-18, 20 clients with full participation, 500 communication rounds, one local epoch, and symmetric noise `(rho, tau) = (0.6, 0.7)`. The data/noise seed is 2 and the training seed is 11. Both the loss parameter `e` and the classifier parameter `alpha` are set to 2.
 
 Results are saved as CSV files in `output/`, including test accuracy, runtime, feature orthogonality, and label-noise statistics. The final printed mean and standard deviation summarize test accuracy over the last five communication rounds of the single run. Exact numerical results may vary with software and hardware.
 
