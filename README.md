@@ -60,10 +60,14 @@ Results are saved as CSV files in `output/`, including test accuracy, runtime, f
 If you find our work useful, please consider citing:
 
 ```bibtex
-@misc{zhong_fedcova,
+@misc{zhong2026fedcovarobustfederatedcovariance,
   title={FedCova: Robust Federated Covariance Learning Against Noisy Labels},
-  author={Zhong, Xiangyu and Yuan, Xiaojun and Zhang, Ying-Jun Angela},
-  note={Manuscript}
+  author={Xiangyu Zhong and Xiaojun Yuan and Ying-Jun Angela Zhang},
+  year={2026},
+  eprint={2603.04062},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2603.04062}
 }
 ```
 
