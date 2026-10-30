@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+output/
+datasets/cifar10/
+*.eps
+*.png
+*.pdf
